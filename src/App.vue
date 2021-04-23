@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="row">
+      <ul class="list-inline col-12 text-center">
+        <li class="list-inline-item"><a href="#" @click.prevent="targetComponent = 'HomeComponent'">Home</a></li>
+        <li class="list-inline-item"><a href="#" @click.prevent="targetComponent = 'ContactComponent'">Contact</a></li>
+        <li class="list-inline-item"><a href="#" @click.prevent="targetComponent = 'AboutComponent'">About</a></li>
+      </ul>
+    </div>
+    <div class="row">
+      <keep-alive>
+        <component col-12 :is='targetComponent'></component>
+      </keep-alive>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import HomeComponent from './components/HomeComponent.vue'
+  import ContactComponent from './components/ContactComponent.vue'
+  import AboutComponent from './components/AboutComponent.vue'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      targetComponent:'HomeComponent'
+    }
+  },
   components: {
-    HelloWorld
+    HomeComponent,
+    ContactComponent,
+    AboutComponent,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+li{
+  font-size: 30px;
+  margin: 20px;
 }
 </style>
